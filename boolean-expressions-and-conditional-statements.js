@@ -27,18 +27,33 @@ Paste the following code into your editor:
 const readline = require('readline-sync');
 
 const hasTorch = true;
-const hasMap = false;
+const hasMap = true;
 
 console.log("You see two paths: one leads to the mountains, the other to the village.");
 const choice = readline.question("Do you go to the 'mountains' or the 'village'?");
 
 if (choice === "mountains" && hasTorch) {
-  console.log("You safely navigate through the dark mountains.");
+  const isTourchLit = readline.question("Did you light your tourch? yes or no: ");
+  if(isTourchLit === "Yes" || isTourchLit === "yes"){
+    console.log("You safely navigate through the dark mountains.");
+  }else{
+    console.log("You have been eaten by a bear that you did not see.");
+  }
+  
 } else if (choice === "mountains" && !hasTorch) {
-  console.log("It's too dark to proceed. You decide to turn back.");
+    let hasFireStarter = readline.question("Did you bring a fire starter? yes or no: ");
+    if (hasFireStarter === "Yes" || hasFireStarter === "yes"){
+      console.log("You will have to light a fire and camp out at night.");
+    }else{
+      console.log("It's too dark to proceed. You decide to turn back.");
+    }
+  
+  
 } else if (choice === "village" || hasMap) {
   console.log("You find your way to the village.");
-} else {
+} 
+
+else {
   console.log("You get lost and wander aimlessly.");
 }
 
